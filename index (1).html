@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      background-color: #581845;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .bubble {
+      background-color: #900C3F;
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      color: #fff;
+      cursor: pointer;
+      text-shadow: 0 0 10px #fff;
+      font-style: italic;
+    }
+
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 20px;
+      font-size: 20px;
+      text-shadow: 0 0 10px #fff;
+      animation: fall 1s ease-in-out infinite;
+    }
+
+    #message {
+      display: none;
+      font-size: 72px;
+      font-style: italic;
+      text-shadow: 0 0 10px #fff;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100%) rotate(0deg);
+      }
+
+      20% {
+        transform: translateY(100%) rotate(-20deg);
+      }
+
+      40% {
+        transform: translateY(100%) rotate(20deg);
+      }
+
+      60% {
+        transform: translateY(100%) rotate(-20deg);
+      }
+
+      80% {
+        transform: translateY(100%) rotate(20deg);
+      }
+
+      100% {
+        transform: translateY(100%) rotate(0deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bubble" id="bubble">Hi Crush...</div>
+  <p id="message">Can we go for a date ?!</p>
+  <div id="hearts"></div>
+  <script>
+    const bubble = document.querySelector('#bubble');
+    const message = document.querySelector('#message');
+    const heartsContainer = document.querySelector('#hearts');
+    bubble.addEventListener('click', function() {
+      bubble.style.display = 'none';
+      message.style.display = 'block';
+      generateHearts();
+    });
+
+    function generateHearts() {
+      for (let i = 0; i < 50; i++) {
+        let heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤❤❤';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.top = Math.random() * 100 + '%';
+        heart.style.animationDelay = Math.random() + 's';
+        heartsContainer.appendChild(heart);
+      }
+    }
+  </script>
+</body>
+
+</html>
